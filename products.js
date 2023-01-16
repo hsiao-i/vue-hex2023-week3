@@ -1,4 +1,4 @@
-let productModal = new bootstrap.Modal(document.getElementById('productModal'))
+let productModal = ''
 
 const app = Vue.createApp({
   data() {
@@ -6,13 +6,14 @@ const app = Vue.createApp({
       baseUrl: 'https://vue3-course-api.hexschool.io/v2',
       apiPath: 'hsiaoi-2023',
       tempProduct: {},
-      products: []
+      products: [],
+      isNew: false
     }
   },
   methods: {
-    productDetail(product) {
-      this.tempProduct = product
-    },
+    // productDetail(product) {
+    //   this.tempProduct = product
+    // },
 
     checkAdmin() {
       const url = `${this.baseUrl}/api/user/check`
@@ -41,15 +42,28 @@ const app = Vue.createApp({
         console.log(err);
       })
     },
-    openModal() {
-      productModal.show()
-      console.log('click');
+    openModal(state, product) {
+      if (state === 'new') {
+        this.tempProduct = {}
+        productModal.show()
+        console.log(state);
+      } 
+      
+      if (state === 'edit') {
+        this.tempProduct = product
+        productModal.show()
+        console.log(state);
+        console.log(product);
+      }
+      
     },
     closeModal() {
       productModal.hide()
     }
   },
   mounted() {
+    productModal = new bootstrap.Modal(document.getElementById('productModal'))
+
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1")
       
     axios.defaults.headers.common['Authorization'] = token
