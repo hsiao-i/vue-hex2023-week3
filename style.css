@@ -37,6 +37,10 @@ tr td {
   color: #F5E8E4;
   background-color: #678983;
 }
+.btn-success-c:hover {
+  color: #ffffff;
+  background-color: #475e59;
+}
 
 .btn-outline-success-c {
   color: #678983;

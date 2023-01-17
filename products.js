@@ -7,7 +7,19 @@ const app = Vue.createApp({
       apiPath: 'hsiaoi-2023',
       tempProduct: {},
       products: [],
-      isNew: false
+      isNew: false,
+      productData: {
+        title: "",
+        category: "",
+        origin_price: 0,
+        price: 0,
+        unit: "",
+        description: "",
+        content: "",
+        is_enabled: 1,
+        imageUrl: "",
+        imagesUrl: []
+      }
     }
   },
   methods: {
@@ -42,6 +54,7 @@ const app = Vue.createApp({
         console.log(err);
       })
     },
+    
     openModal(state, product) {
       if (state === 'new') {
         this.tempProduct = {}
