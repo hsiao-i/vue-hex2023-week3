@@ -16,7 +16,7 @@ const app = Vue.createApp({
       
 
       axios.post(url, this.user)
-      .then(() => {
+      .then((res) => {
         // console.log(res);
         const { expired, token } = res.data
         document.cookie = `hexToken=${ token };expires=${ new Date(expired) }`
