@@ -169,7 +169,7 @@
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                 取消
               </button>
-              <button type="button" class="btn btn-danger">
+              <button type="button" class="btn btn-danger" @click="deleteProduct">
                 確認刪除
               </button>
             </div>
@@ -206,35 +206,7 @@
         </tbody>
       </table>
       <p class="text-success-c">目前有 <span>{{ Object.keys(products).length }}</span> 項產品</p>
-       
-        <!-- <div>
-          <h2>單一產品細節</h2>
-          
-          <div v-if="tempProduct.title">
-            <div class="card bg-success-c">
-              <div class="d-flex">
-                <div>
-                  <img :src="tempProduct.imageUrl" :alt="tempProduct.title" class="card-img-l">
-                </div>
-                
-                <div >
-                  <div v-for="(img,i) in tempProduct.imagesUrl"><img :src="img" :alt="`tempProduct.title ${i}`" class="card-img-r"></div>
-                </div>
-              </div>
-              
-              <div class="card-body text-white">
-                <h5 class="card-title">{{ tempProduct.title }} <span class="badge bg-pink text-secondary ms-2">{{ tempProduct.category }}</span> </h5>
-                <p class="card-text">商品描述：{{ tempProduct.description }} <br>
-                </p>
-                <p class="card-text">商品內容：{{ tempProduct.content }}</p>
-                <p class="text-end text-white">{{ tempProduct.price }} <del class="text-secondary">{{ tempProduct.origin_price }}</del> / {{ tempProduct.unit }}</p>
 
-              </div>
-            </div>
-          </div>
-          <p class="text-secondary"v-else>請選擇一個商品查看</p>
-        </div> -->
-      <!-- </div> -->
     </div>
   </div>
   

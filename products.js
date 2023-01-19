@@ -49,13 +49,14 @@ const app = Vue.createApp({
       const url = `${this.baseUrl}/api/${this.apiPath}/admin/products/all`
 
       axios.get(url)
-      .then(() => {
+      .then((res) => {
         // console.log(res);
         this.products = res.data.products
+        
       })
       .catch(() => {
         // console.log(err);
-        alert('發生錯誤，請與管理者聯繫')
+        alert('發生錯誤，產品資訊無法顯示')
       })
     },
     
@@ -74,8 +75,14 @@ const app = Vue.createApp({
       }
     },
 
-    closeModal() {
+    closeModal(state) {
+      //新增和編輯 modal
       productModal.hide()
+
+      //刪除 modal
+      if (state === 'delete') {
+        delProductModal.hide()
+      }
     },
 
     //新增和編輯寫一起
@@ -94,12 +101,34 @@ const app = Vue.createApp({
         // console.log(res);
         this.closeModal()
         this.getProducts()
+
+        if (httpRequest === 'post') {
+          alert('成功新增商品')
+        } else if (httpRequest === 'put') {
+          alert('成功更新商品內容')
+        }
+
       })
       .catch(() => {
         // console.log(err);
         alert('請注意是否有未填資訊')
       })
-      
+    },
+
+    deleteProduct() {
+      const url = `${this.baseUrl}/api/${this.apiPath}/admin/product/${this.productData.id}`
+
+      axios.delete(url)
+      .then((res) => {
+        // console.log(res);
+        alert(res.data.message)
+        this.closeModal('delete')
+        this.getProducts()
+      })
+      .catch(() => {
+        // console.log(err);
+        alert('尚未刪除此項商品')
+      })
     }
   },
   mounted() {
